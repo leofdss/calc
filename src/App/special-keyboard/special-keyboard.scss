@@ -1,0 +1,79 @@
+.special-keyboard {
+  height: 150px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.special-keys {
+  width: 90%;
+  height: 140px;
+  background-color: #0000ff;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+%special-key {
+  cursor: pointer;
+  width: 14.28%;
+  height: 46.666px;
+  position: relative;
+  overflow: hidden;
+  padding: 5px 0px;
+  background-color: rgba($color: #000000, $alpha: 0);
+  border: none;
+  color: white;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120px;
+    height: 120px;
+    margin-left: -60px;
+    margin-top: -60px;
+    background: #10194f;
+    border-radius: 100%;
+    opacity: 0.6;
+    transform: scale(0);
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+    }
+    20% {
+      transform: scale(0.3);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+  &:not(:active):after {
+    animation: ripple 1s ease-out;
+  }
+  &:after {
+    visibility: hidden;
+  }
+  &:focus:after {
+    visibility: visible;
+  }
+  &:focus {
+    outline-style: none;
+  }
+}
+
+.special-key-char {
+  @extend %special-key;
+  font-size: 120%;
+}
+.special-key-text {
+  @extend %special-key;
+  font-size: 80%;
+}

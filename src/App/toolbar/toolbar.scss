@@ -1,0 +1,78 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar {
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container-toolbar {
+  width: 90%;
+  display: flex;
+  justify-content: start;
+}
+
+%button-material {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  padding: 5px 10px;
+  background-color: rgba($color: #000000, $alpha: 0);
+  border: white;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120px;
+    height: 120px;
+    margin-left: -60px;
+    margin-top: -60px;
+    background: #3f51b5;
+    border-radius: 100%;
+    opacity: 0.6;
+    transform: scale(0);
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+    }
+    20% {
+      transform: scale(0.3);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+  &:not(:active):after {
+    animation: ripple 1s ease-out;
+  }
+  &:after {
+    visibility: hidden;
+  }
+  &:focus:after {
+    visibility: visible;
+  }
+  &:focus {
+    outline-style: none;
+  }
+}
+
+.button-material {
+  @extend %button-material;
+}
+
+.button-material-radius {
+  @extend %button-material;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
